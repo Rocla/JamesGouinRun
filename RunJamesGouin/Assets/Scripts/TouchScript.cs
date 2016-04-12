@@ -18,7 +18,7 @@ public class TouchScript : MonoBehaviour {
             move = false;
         }
            
-        if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
+		if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
             transform.GetComponent<Animation>().Play();
             /*
