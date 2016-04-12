@@ -15,7 +15,7 @@ public class TouchScript : MonoBehaviour {
 
         if(!transform.GetComponent<Animation>().IsPlaying("JumpAnimation"))
         {
-            move = false;
+            move = true;
         }
            
 		if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
