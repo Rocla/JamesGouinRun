@@ -14,9 +14,17 @@ public class TouchScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+<<<<<<< HEAD:RunJamesGouin/Assets/TouchScript.cs
         transform.Translate(Vector3.right * Time.deltaTime * 3);
+=======
+
+        if(!transform.GetComponent<Animation>().IsPlaying("JumpAnimation"))
+        {
+            move = true;
+        }
+>>>>>>> 04d03e3abf980f029a16498f0ee6ae608c811b24:RunJamesGouin/Assets/Scripts/TouchScript.cs
            
-        if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
+		if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
             if(!this.jumping)
             {
