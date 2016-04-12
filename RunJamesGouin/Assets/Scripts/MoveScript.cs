@@ -34,4 +34,5 @@ public class MoveScript : MonoBehaviour {
         // rigidbody2D.velocity = movement;
         transform.GetComponent<Rigidbody2D>().velocity = movement;
     }
+
 }
