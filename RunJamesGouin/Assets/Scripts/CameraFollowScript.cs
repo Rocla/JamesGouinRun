@@ -2,13 +2,8 @@
 using System.Collections;
 
 
-//http://unity3diy.blogspot.ch/2015/02/unity-2d-camera-follow-script.html
+// http://unity3diy.blogspot.ch/2015/02/unity-2d-camera-follow-script.html
 public class CameraFollowScript : MonoBehaviour {
-
-
-	public float interpVelocity;
-	public float minDistance;
-	public float followDistance;
 
 	/// <summary>
 	/// Le joueur est la cible
@@ -17,17 +12,26 @@ public class CameraFollowScript : MonoBehaviour {
 
 	public Vector3 offset;
 
-
+	float interpVelocity;
 	Vector3 targetPos;
+	MoveScript msTarget;
+	Vector3 offsetBack;
+
+	void Awake () {
+		msTarget = target.gameObject.GetComponent<MoveScript> ();
+		offsetBack = offset;
+		offsetBack.x = offsetBack.x * -1;
+	}
+
 
 	// Use this for initialization
 	void Start () {
 		targetPos = transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (target) {
+
+	void FixedUpdate(){
+		
+		if (target){
 			Vector3 posNoZ = transform.position;
 			posNoZ.z = target.transform.position.z;
 
@@ -37,7 +41,13 @@ public class CameraFollowScript : MonoBehaviour {
 
 			targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime);
 
-			transform.position = Vector3.Lerp( transform.position, targetPos + offset, 0.25f);
+			Vector3 offsetEffectif = offset;
+
+			if (msTarget.direction.x < 0) {
+				offsetEffectif = offsetBack;
+			}
+
+			transform.position = Vector3.Lerp( transform.position, targetPos + offsetEffectif, 0.25f);
 		}
 	}
 }
