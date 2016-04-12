@@ -3,35 +3,44 @@ using System.Collections;
 
 public class TouchScript : MonoBehaviour {
 
-    bool move;
+    bool jumping;
 
 	// Use this for initialization
 	void Start () {
-        move = false;
-	}
+        this.jumping = false;
+
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
 
     // Update is called once per frame
     void Update () {
-
-        if(!transform.GetComponent<Animation>().IsPlaying("JumpAnimation"))
-        {
-            move = false;
-        }
+        transform.Translate(Vector3.right * Time.deltaTime * 3);
            
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
         {
-            transform.GetComponent<Animation>().Play();
-            /*
-            if (!move)
+            if(!this.jumping)
             {
-                transform.GetComponent<Animation>().Play();
-                move = true;
+                this.jumping = true;
+                float i = 0.0f;
+
+                while (i < GetComponent<Collider>().bounds.size.y * 2)
+                {
+                    // FOR PC TEST : 0.1f * 70 * Time.deltaTime
+                    transform.Translate(0, 0.1f * 10 * Time.deltaTime, 0);
+                    i += 0.1f;
+                }
+                this.jumping = false;
             }
-            else
-            {
-                transform.GetComponent<Animation>().Stop();
-                move = false;
-            }*/
+
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        /*if (collision.transform.tag == "Platform")
+        {
+            Debug.Log("COLLIDE!");
+            move = false;
+        }*/
     }
 }
