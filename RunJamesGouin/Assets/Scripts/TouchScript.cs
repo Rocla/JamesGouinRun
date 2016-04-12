@@ -14,7 +14,8 @@ public class TouchScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        transform.Translate(Vector3.right * Time.deltaTime * 3);
+        //MOVE
+        transform.Translate(Vector2.right * Time.deltaTime * 3);
            
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
@@ -23,7 +24,7 @@ public class TouchScript : MonoBehaviour {
                 this.jumping = true;
                 float i = 0.0f;
 
-                while (i < GetComponent<Collider>().bounds.size.y * 2)
+                while (i < GetComponent<Collider2D>().bounds.size.y * 2)
                 {
                     // FOR PC TEST : 0.1f * 70 * Time.deltaTime
                     // FOR ANDROID TEST : 0.1f * 20 * Time.deltaTime
