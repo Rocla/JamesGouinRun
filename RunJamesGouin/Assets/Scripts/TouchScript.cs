@@ -21,7 +21,7 @@ public class TouchScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //MOVE
-        transform.Translate(Vector2.right * Time.deltaTime * 3);
+        transform.Translate(Vector2.right * Time.deltaTime * 1);
          
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
