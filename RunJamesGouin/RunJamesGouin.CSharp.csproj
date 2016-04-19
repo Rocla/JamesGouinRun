@@ -72,5 +72,9 @@
     <Compile Include="Assets\Scripts\MoveScript.cs" />
     <Compile Include="Assets\Scripts\TouchScript.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Musics\Christoph Schade - Sound Loops BGM - 149637 --- Jamendo - MP3\License.txt" />
+    <None Include="Assets\Musics\Kara Square - Joyful Jubilee - 146733 --- Jamendo - MP3\License.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
