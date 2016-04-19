@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class TouchScript : MonoBehaviour {
 
     bool jumping;
-    bool falling;
+	bool falling;
+    public AudioClip jump_sound;
+	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
         this.jumping = false;
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+		audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,6 +27,7 @@ public class TouchScript : MonoBehaviour {
         {
             if(!this.jumping)
             {
+				audio.PlayOneShot(jump_sound, 0.7F);
                 this.jumping = true;
                 float i = 0.0f;
 
@@ -29,6 +35,7 @@ public class TouchScript : MonoBehaviour {
                 {
                     // FOR PC TEST : 0.1f * 70 * Time.deltaTime
                     // FOR ANDROID TEST : 0.1f * 20 * Time.deltaTime
+
                     transform.Translate(0, 0.1f * Time.deltaTime, 0);
                     i += 0.1f;
                 }
@@ -41,6 +48,7 @@ public class TouchScript : MonoBehaviour {
             /*if(!this.falling)
             {*/
                 this.jumping = false;
+            
             //}
 
             //Debug.Log("BOUH!");
@@ -49,15 +57,6 @@ public class TouchScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("COLLIDE enter!");
-        if (collision.transform.tag == "Platform")
-        {
-            Debug.Log("COLLIDE!");
-            falling = false;
-        }
-        else
-        {
-            Debug.Log("COLLIDE ELSE!");
-        }
+        
     }
 }
