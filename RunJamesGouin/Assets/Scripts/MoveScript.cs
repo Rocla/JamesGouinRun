@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-
 
 public class MoveScript : MonoBehaviour {
 
@@ -19,10 +19,15 @@ public class MoveScript : MonoBehaviour {
 	/// </summary>
     private Vector2 movement;
 
-
-	private bool onSurface=false;
+    private bool onSurface=false;
 	private bool onCollideWall=false;
 
+    public AudioClip bananaSound;
+
+    void Start()
+    {
+        
+    }
 
     void Update() {
         // Calcul du mouvement
@@ -44,7 +49,24 @@ public class MoveScript : MonoBehaviour {
 		transform.GetComponent<Rigidbody2D> ().velocity = movement;
     }
 
-	void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Banana")
+        {
+            AudioSource audio = collision.transform.GetComponent<AudioSource>();
+            audio.PlayOneShot(bananaSound, 0.7F);
+
+            Destroy(collision.transform.gameObject);
+            Score.getInstance().incBanana();
+        }
+        else if(collision.transform.tag == "Fish")
+        {
+            Destroy(collision.transform.gameObject);
+            Score.getInstance().incFish();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.transform.tag == "Platform")
 		{
@@ -57,7 +79,7 @@ public class MoveScript : MonoBehaviour {
 			onSurface = true;
 		}
 
-		if (collision.transform.tag == "Wall")
+        if (collision.transform.tag == "Wall")
 		{
 
 			Debug.Log ("COLLIDE WALL!");
@@ -69,8 +91,6 @@ public class MoveScript : MonoBehaviour {
 			//Vector2 contactPoint = collision.contacts[0].point;
 			/*Vector2 minCollidePoint = transform.GetComponent<Collider2D> ().bounds.min;
 			Vector2 maxCollidePoint = transform.GetComponent<Collider2D> ().bounds.max;
-
-
 
 			foreach (ContactPoint2D c in collision.contacts) {
 				Vector2 contactPoint = c.point;
@@ -87,6 +107,8 @@ public class MoveScript : MonoBehaviour {
 				}
 			}*/
 		}
+
+
 	}
 
 	void OnCollisionExit2D(Collision2D collision) {
