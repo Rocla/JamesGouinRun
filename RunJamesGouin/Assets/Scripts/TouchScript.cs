@@ -31,7 +31,7 @@ public class TouchScript : MonoBehaviour {
                 this.jumping = true;
                 float i = 0.0f;
 
-                while (i < GetComponent<Collider2D>().bounds.size.y * 50)
+                while (i < GetComponent<Collider2D>().bounds.size.y * 60)
                 {
                     // FOR PC TEST : 0.1f * 70 * Time.deltaTime
                     // FOR ANDROID TEST : 0.1f * 20 * Time.deltaTime
