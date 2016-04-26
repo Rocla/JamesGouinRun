@@ -18,6 +18,6 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-        Application.LoadLevel("scene");
+        Application.LoadLevel("jump_procedural");
     }
 }
