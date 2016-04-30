@@ -11,7 +11,7 @@ public class JumpingPenguin : MonoBehaviour {
 	public AudioSource failAudio;
 	public Text scoreText;
 
-	public float jumpForce = 400.0f;
+	public float jumpForce = 600.0f;
 	private float failTime = -1.0f;
 	private float startingTime = 0.0f;
 
