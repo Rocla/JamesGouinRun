@@ -21,13 +21,14 @@ public class TouchScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //MOVE
-        transform.Translate(Vector2.right * Time.deltaTime * 1);
+        //transform.Translate(Vector2.right * Time.deltaTime * 1);
          
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
         {
             if(!this.jumping)
             {
 				audio.PlayOneShot(jump_sound, 0.7F);
+
                 this.jumping = true;
                 float i = 0.0f;
 
