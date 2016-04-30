@@ -10,10 +10,13 @@ public class JumpingPenguin : MonoBehaviour {
 	public AudioSource jumpAudio;
 	public AudioSource failAudio;
 	public Text scoreText;
+	public Text highestScoreText;
 
 	public float jumpForce = 600.0f;
 	private float failTime = -1.0f;
 	private float startingTime = 0.0f;
+	private float highestScore = 0.0f;
+	private bool playerDead = false;
 
 	private const int maxJumpsAtOnce = 2;
 	private int jumpsLeft = maxJumpsAtOnce;
@@ -25,6 +28,9 @@ public class JumpingPenguin : MonoBehaviour {
 		animator = GetComponent<Animator>();
 
 		startingTime = Time.time;
+
+		highestScore = PlayerPrefs.GetFloat("highestScore", 0);
+		highestScoreText.text = highestScore.ToString("0.0");
 	}
 
 	// Update is called once per frame
@@ -60,14 +66,15 @@ public class JumpingPenguin : MonoBehaviour {
 				jumpAudio.Play();
 			}
 
-			animator.SetFloat("velocity", rigidbody2D.velocity.y);
+			animator.SetFloat("vVelocity", rigidbody2D.velocity.y);
 			scoreText.text = (Time.time - startingTime).ToString("0.0");
 		}
 		else
 		{
-			if (Time.time > failTime + 2)
+			if (Time.time > failTime + 2 || playerDead)
 			{
 				UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+				playerDead = false;
 			}
 
 		}
@@ -78,6 +85,12 @@ public class JumpingPenguin : MonoBehaviour {
 //		Debug.Log("colliding with: " + collision.collider.gameObject.layer);
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
+			if ((Time.time - startingTime) > highestScore) {
+				PlayerPrefs.SetFloat("highestScore", Time.time - startingTime);
+				highestScoreText.text = highestScore.ToString("0.0");
+			}
+			playerDead = true;
+
 			foreach (Spawner spawner in FindObjectsOfType<Spawner>())
 			{
 				spawner.enabled = false;
