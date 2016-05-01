@@ -33,7 +33,6 @@ public class Score {
         nbFish = 0;
         time = 0;
         nbLife = 0;
-        incLife();
     }
 
     public void loadCanvas()
@@ -57,7 +56,16 @@ public class Score {
 
         if(instance.reload)
         {
-            instance.loadCanvas();
+            try
+            {
+                instance.loadCanvas();
+            }
+            catch
+            {
+                // DO NOTHING
+            }
+            
+            instance.reload = false;
         }
 
         return instance;
@@ -95,18 +103,19 @@ public class Score {
         nbLife--;
         nbLifeGuiText.text = nbLife.ToString();
 
+        // RESTART LEVEL
+        imageLifeOver.GetComponent<CanvasRenderer>().SetAlpha(0.1f);
+        canvasLifeOver.gameObject.SetActive(true);
+        imageLifeOver.CrossFadeAlpha(1f, 0.001f, false);
+
+        reload = true;
+
         if (nbLife < 0)
         {
             return "RestartGame";
         }
         else
         {
-            reload = true;
-            // RESTART LEVEL
-            imageLifeOver.GetComponent<CanvasRenderer>().SetAlpha(0.1f);
-            canvasLifeOver.gameObject.SetActive(true);
-            imageLifeOver.CrossFadeAlpha(1f, 0.001f, false);
-
             return "RestartLevel";
         }
     }

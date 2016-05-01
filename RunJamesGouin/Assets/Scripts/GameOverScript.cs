@@ -18,12 +18,10 @@ public class GameOverScript : MonoBehaviour {
         buttonBackToMenu = transform.Find("BackToMenuButton").GetComponent<Button>().GetComponent<Button>();
 
         buttonRestartGame.onClick.AddListener(() => {
-            Debug.Log("OK");
             SceneManager.LoadScene("level1");
         });
 
         buttonBackToMenu.onClick.AddListener(() => {
-            Debug.Log("OK2");
             SceneManager.LoadScene("main");
         });
 
