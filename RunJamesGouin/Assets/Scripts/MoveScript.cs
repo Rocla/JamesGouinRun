@@ -24,9 +24,21 @@ public class MoveScript : MonoBehaviour {
 
     public AudioClip bananaSound;
 
+	/// <summary>
+	/// Stockage des spirites
+	/// </summary>
+	public SpriteRenderer sprender_wall;
+	public SpriteRenderer sprender_run;
+	private SpriteRenderer foot_l;
+	private SpriteRenderer foot_r;
+
     void Start()
     {
-        
+		sprender_wall.enabled = false;
+
+		Transform ts = sprender_run.GetComponent<Transform>();
+		foot_l = ts.Find("foot_left/penguin_foot").GetComponent<SpriteRenderer>(); 
+		foot_r = ts.Find("foot_right/penguin_foot").GetComponent<SpriteRenderer>();
     }
 
     void Update() {
@@ -88,6 +100,11 @@ public class MoveScript : MonoBehaviour {
 			transform.Rotate(0.0f, 180, 0.0f);
 			onCollideWall = true;
 
+			sprender_wall.enabled = true;
+			sprender_run.enabled = false;
+			foot_l.enabled = false;
+			foot_r.enabled = false;
+
 			//Vector2 contactPoint = collision.contacts[0].point;
 			/*Vector2 minCollidePoint = transform.GetComponent<Collider2D> ().bounds.min;
 			Vector2 maxCollidePoint = transform.GetComponent<Collider2D> ().bounds.max;
@@ -136,6 +153,11 @@ public class MoveScript : MonoBehaviour {
 		if (collision.transform.tag == "Wall") {
 
 			Debug.Log ("UNCOLLIDE WALL!");
+
+			sprender_wall.enabled = false;
+			sprender_run.enabled = true;
+			foot_l.enabled = true;
+			foot_r.enabled = true;
 			onCollideWall = false;
 		}
 	}
