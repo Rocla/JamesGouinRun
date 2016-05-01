@@ -72,8 +72,10 @@
     <Compile Include="Assets\Prefabs\Score.cs" />
     <Compile Include="Assets\Scripts\BackgroundDestroyer.cs" />
     <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
+    <Compile Include="Assets\Scripts\GameOverScript.cs" />
     <Compile Include="Assets\Scripts\GroundGC.cs" />
     <Compile Include="Assets\Scripts\InvisiblerSprite.cs" />
+    <Compile Include="Assets\Scripts\JumpPenguinForce.cs" />
     <Compile Include="Assets\Scripts\JumpingPenguin.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MoveScript.cs" />

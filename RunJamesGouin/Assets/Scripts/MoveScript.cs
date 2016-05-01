@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MoveScript : MonoBehaviour {
 
@@ -33,8 +34,14 @@ public class MoveScript : MonoBehaviour {
 	private SpriteRenderer foot_l;
 	private SpriteRenderer foot_r;
 
+    private bool alreadyDied;
+
     void Start()
     {
+        //Needed when starting the game
+        Score.getInstance();
+
+        alreadyDied = false;
 		sprender_wall.enabled = false;
 
 		Transform ts = sprender_run.GetComponent<Transform>();
@@ -82,12 +89,12 @@ public class MoveScript : MonoBehaviour {
             Destroy(collision.transform.gameObject);
             Score.getInstance().incLife();
         }
-        else if(collision.transform.tag == "Water")
+        else if(collision.transform.tag == "Water" && !alreadyDied)
         {
+            alreadyDied = true;
             Debug.Log("WATER WATER WATER");
-            Score.getInstance().decLife();
-            // RESTART GAME
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            String restart = Score.getInstance().decLife();
+            StartCoroutine(restart);
         }   
     }
 
@@ -174,5 +181,17 @@ public class MoveScript : MonoBehaviour {
 			onCollideWall = false;
 		}
 	}
-		
+
+    IEnumerator RestartLevel()
+    {
+        Debug.Log("RESTART LEVEL");
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(0f);
+        SceneManager.LoadScene("game_over");
+    }
+    
 }
