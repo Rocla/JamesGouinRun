@@ -17,7 +17,7 @@ public class MoveScript : MonoBehaviour {
 	/// <summary>
 	/// Stockage du mouvement
 	/// </summary>
-    private Vector2 movement;
+    private Vector3 movement;
 
     private bool onSurface=false;
 	private bool onCollideWall=false;
@@ -43,13 +43,15 @@ public class MoveScript : MonoBehaviour {
 
     void Update() {
         // Calcul du mouvement
-		movement = new Vector2 (
+		movement = new Vector3 (
 			speed.x * direction.x,
-			speed.y * direction.y);
+			speed.y * direction.y,
+			0
+		);
 
 		if (!onSurface && onCollideWall)
 		{
-			movement = new Vector2(0,0);
+			movement = new Vector3(0,0,0);
 		}
     }
 
@@ -58,7 +60,9 @@ public class MoveScript : MonoBehaviour {
 	{
         // Déplacement
         // rigidbody2D.velocity = movement;
-		transform.GetComponent<Rigidbody2D> ().velocity = movement;
+		//transform.GetComponent<Rigidbody2D> ().velocity = movement;
+
+		transform.position += movement * Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
