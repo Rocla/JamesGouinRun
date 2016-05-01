@@ -65,8 +65,7 @@ public class JumpingPenguin : MonoBehaviour {
 
 				jumpAudio.Play();
 			}
-
-			animator.SetFloat("vVelocity", rigidbody2D.velocity.y);
+				
 			scoreText.text = (Time.time - startingTime).ToString("0.0");
 		}
 		else
