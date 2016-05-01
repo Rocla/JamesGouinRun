@@ -17,8 +17,13 @@ public class MainMenu : MonoBehaviour {
         }
 	}
 
-    public void StartGame()
+    public void StartEndlessGame()
     {
         SceneManager.LoadScene("jump_procedural");
     }
+
+	public void StartLevel1Game()
+	{
+		Application.LoadLevel("level1");
+	}
 }
