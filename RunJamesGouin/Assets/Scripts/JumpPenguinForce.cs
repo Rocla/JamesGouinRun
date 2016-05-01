@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class JumpPenguinForce : MonoBehaviour {
 
-	private Collider2D collider2D;
-	private Rigidbody2D rigidbody2D;
 //	private Animator animator;
 	public AudioSource jumpAudio;
 //	public AudioSource failAudio;
@@ -23,8 +21,6 @@ public class JumpPenguinForce : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		collider2D = GetComponent<Collider2D>();
-		rigidbody2D = GetComponent<Rigidbody2D>();
 //		animator = GetComponent<Animator>();
 
 //		startingTime = Time.time;
@@ -47,23 +43,23 @@ public class JumpPenguinForce : MonoBehaviour {
 //		{
 			if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("Fire1")) && jumpsLeft > 0)
 			{
-				if (rigidbody2D.velocity.y < 0)
+				if (GetComponent<Rigidbody2D>().velocity.y < 0)
 				{
-					rigidbody2D.velocity = Vector2.zero;
+                    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 				}
 
 				if (jumpsLeft == 1)
 				{
-					rigidbody2D.AddForce(transform.up * jumpForce * 0.75f);
+                    GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce * 0.75f);
 				}
 				else
 				{
-					rigidbody2D.AddForce(transform.up * jumpForce);
+                    GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce);
 				}
 
 				jumpsLeft--;
 
-				jumpAudio.Play();
+				//jumpAudio.Play();
 			}
 
 //			animator.SetFloat("vVelocity", rigidbody2D.velocity.y);
