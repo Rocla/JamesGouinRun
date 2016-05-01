@@ -1,10 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScrollingScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/InvisiblerSprite.cs">
     <Files>
+      <File FileName="Assets/Scripts/waterMoveScript.cs" Line="36" Column="1" />
+      <File FileName="Assets/Scripts/ScrollingScript.cs" Line="48" Column="3" />
       <File FileName="Assets/Scripts/CameraFollowScript.cs" Line="44" Column="36" />
-      <File FileName="Assets/Scripts/MoveScript.cs" Line="41" Column="3" />
-      <File FileName="Assets/Scripts/ScrollingScript.cs" Line="48" Column="33" />
+      <File FileName="Assets/Scripts/MoveScript.cs" Line="110" Column="4" />
+      <File FileName="Assets/Scripts/InvisiblerSprite.cs" Line="14" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
