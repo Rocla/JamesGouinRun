@@ -13,6 +13,8 @@ public class Score {
     private int time;
     private int nbLife;
 
+    private int score;
+
     private Text nbBananaGuiText;
     private Text nbFishGuiText;
     private Text scoreNumberGuiText;
@@ -27,6 +29,7 @@ public class Score {
     {
         reload = false;
 
+        score = 0;
         nbBanana = 0;
         nbFish = 0;
         time = 0;
@@ -93,7 +96,7 @@ public class Score {
 
     private void updateScore()
     {
-        int score = nbBanana * 1000 + nbFish * 100;
+        score = nbBanana * 1000 + nbFish * 100;
         scoreNumberGuiText.text = score.ToString();
     }
 
@@ -126,5 +129,10 @@ public class Score {
         {
             return "RestartLevel";
         }
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 }

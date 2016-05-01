@@ -96,7 +96,6 @@ public class MoveScript : MonoBehaviour {
         else if(collision.transform.tag == "Water" && !alreadyDied)
         {
             alreadyDied = true;
-            Debug.Log("WATER WATER WATER");
             String restart = Score.getInstance().decLife();
             StartCoroutine(restart);
         }   
@@ -148,6 +147,10 @@ public class MoveScript : MonoBehaviour {
 				}
 			}*/
 		}
+        else if(collision.transform.tag == "End")
+        {
+            SceneManager.LoadScene("game_success");
+        }
 
 
 	}
