@@ -7,15 +7,12 @@ public class TouchScript : MonoBehaviour {
     bool jumping;
 	bool falling;
     public AudioClip jump_sound;
-	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
         this.jumping = false;
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-
-		audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,7 +24,7 @@ public class TouchScript : MonoBehaviour {
         {
             if(!this.jumping)
             {
-				audio.PlayOneShot(jump_sound, 0.7F);
+                GetComponent<AudioSource>().PlayOneShot(jump_sound, 0.7F);
 
                 this.jumping = true;
                 float i = 0.0f;

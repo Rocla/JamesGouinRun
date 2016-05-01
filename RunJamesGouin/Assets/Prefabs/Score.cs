@@ -27,20 +27,25 @@ public class Score {
     {
         reload = false;
 
-        loadCanvas();
-
         nbBanana = 0;
         nbFish = 0;
         time = 0;
-        nbLife = 0;
+        nbLife = 3;
+
+        loadCanvas();
     }
 
     public void loadCanvas()
     {
-        nbBananaGuiText = GameObject.Find("CanvasInGame/BananaNumber").GetComponent<Text>();
-        nbFishGuiText = GameObject.Find("CanvasInGame/FishNumber").GetComponent<Text>();
-        scoreNumberGuiText = GameObject.Find("CanvasInGame/ScoreNumber").GetComponent<Text>();
-        nbLifeGuiText = GameObject.Find("CanvasInGame/LifeNumber").GetComponent<Text>();
+        nbBananaGuiText = GameObject.Find("CanvasInGame/PanelInGame/BananaNumber").GetComponent<Text>();
+        nbBananaGuiText.text = nbBanana.ToString();
+        nbFishGuiText = GameObject.Find("CanvasInGame/PanelInGame/FishNumber").GetComponent<Text>();
+        nbFishGuiText.text = nbFish.ToString();
+        nbLifeGuiText = GameObject.Find("CanvasInGame/PanelInGame/LifeNumber").GetComponent<Text>();
+        nbLifeGuiText.text = nbLife.ToString();
+
+        scoreNumberGuiText = GameObject.Find("CanvasInGame/PanelInGame/ScoreNumber").GetComponent<Text>();
+        updateScore();
 
         canvasLifeOver = GameObject.Find("CanvasLifeOver").GetComponent<Canvas>();
         imageLifeOver = GameObject.Find("ImageLifeOver").GetComponent<Image>();
@@ -112,6 +117,9 @@ public class Score {
 
         if (nbLife < 0)
         {
+            nbLife = 3;
+            nbBanana = 0;
+            nbFish = 0;
             return "RestartGame";
         }
         else
