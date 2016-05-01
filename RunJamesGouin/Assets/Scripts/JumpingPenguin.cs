@@ -110,7 +110,7 @@ public class JumpingPenguin : MonoBehaviour {
 
 			failAudio.Play();
 		}
-		else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+		else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.transform.tag == "Platform")
 		{
 			jumpsLeft = maxJumpsAtOnce;
 		}
