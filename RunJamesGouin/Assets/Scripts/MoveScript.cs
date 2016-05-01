@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MoveScript : MonoBehaviour {
 
@@ -76,6 +77,18 @@ public class MoveScript : MonoBehaviour {
             Destroy(collision.transform.gameObject);
             Score.getInstance().incFish();
         }
+        else if(collision.transform.tag == "Life")
+        {
+            Destroy(collision.transform.gameObject);
+            Score.getInstance().incLife();
+        }
+        else if(collision.transform.tag == "Water")
+        {
+            Debug.Log("WATER WATER WATER");
+            Score.getInstance().decLife();
+            // RESTART GAME
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }   
     }
 
     void OnCollisionEnter2D(Collision2D collision)

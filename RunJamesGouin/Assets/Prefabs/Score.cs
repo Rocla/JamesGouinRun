@@ -9,20 +9,24 @@ public class Score {
     private int nbBanana;
     private int nbFish;
     private int time;
+    private int nbLife;
 
-    public Text nbBananaGuiText;
-    public Text nbFishGuiText;
-    public Text scoreNumberGuiText;
+    private Text nbBananaGuiText;
+    private Text nbFishGuiText;
+    private Text scoreNumberGuiText;
+    private Text nbLifeGuiText;
 
     private Score()
     {
         nbBanana = 0;
         nbFish = 0;
         time = 0;
+        nbLife = 0;
 
-        nbBananaGuiText = GameObject.Find("Canvas/BananaNumber").GetComponent<Text>();
-        nbFishGuiText = GameObject.Find("Canvas/FishNumber").GetComponent<Text>();
-        scoreNumberGuiText = GameObject.Find("Canvas/ScoreNumber").GetComponent<Text>();
+        nbBananaGuiText = GameObject.Find("CanvasInGame/BananaNumber").GetComponent<Text>();
+        nbFishGuiText = GameObject.Find("CanvasInGame/FishNumber").GetComponent<Text>();
+        scoreNumberGuiText = GameObject.Find("CanvasInGame/ScoreNumber").GetComponent<Text>();
+        nbLifeGuiText = GameObject.Find("CanvasInGame/LifeNumber").GetComponent<Text>();
     }
 
     public static Score getInstance()
@@ -53,5 +57,17 @@ public class Score {
     {
         int score = nbBanana * 1000 + nbFish * 100;
         scoreNumberGuiText.text = score.ToString();
+    }
+
+    public void incLife()
+    {
+        nbLife++;
+        nbLifeGuiText.text = nbLife.ToString();
+    }
+
+    public void decLife()
+    {
+        nbLife--;
+        nbLifeGuiText.text = nbLife.ToString();
     }
 }
