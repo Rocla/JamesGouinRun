@@ -38,3 +38,5 @@ RunJamesGouin/ProjectSettings/EditorBuildSettings.asset
 RunJamesGouin/ProjectSettings/InputManager.asset
 RunJamesGouin/ProjectSettings/TagManager.asset
 CurrentMaximizeLayout.dwlt
+RunJamesGouin/Library/UnityAssemblies/Mono.Cecil.xml
+RunJamesGouin/Library/UnityAssemblies/UnityEditor.iOS.Extensions.Xcode.xml
