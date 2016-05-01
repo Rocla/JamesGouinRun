@@ -59,7 +59,7 @@ public class JumpPenguinForce : MonoBehaviour {
 
 				jumpsLeft--;
 
-				//jumpAudio.Play();
+				jumpAudio.Play();
 			}
 
 //			animator.SetFloat("vVelocity", rigidbody2D.velocity.y);

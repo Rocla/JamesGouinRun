@@ -6,7 +6,7 @@ public class JumpingPenguin : MonoBehaviour {
 
 	private Collider2D collider2D;
 	private Rigidbody2D rigidbody2D;
-	private Animator animator;
+	//private Animator animator;
 	public AudioSource jumpAudio;
 	public AudioSource failAudio;
 	public Text scoreText;
@@ -25,7 +25,7 @@ public class JumpingPenguin : MonoBehaviour {
 	void Start () {
 		collider2D = GetComponent<Collider2D>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
+		//animator = GetComponent<Animator>();
 
 		startingTime = Time.time;
 
@@ -102,12 +102,12 @@ public class JumpingPenguin : MonoBehaviour {
 
 
 			failTime = Time.time;
-			animator.SetBool("fail", true);
+			//animator.SetBool("fail", true);
 			rigidbody2D.velocity = Vector2.zero;
 			rigidbody2D.AddForce(transform.up * jumpForce);
 			collider2D.enabled = false;
 
-			failAudio.Play();
+			//failAudio.Play();
 		}
 		else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.transform.tag == "Platform")
 		{
