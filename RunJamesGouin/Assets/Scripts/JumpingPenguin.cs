@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class JumpingPenguin : MonoBehaviour {
 
+	private Collider2D collider2D;
+	private Rigidbody2D rigidbody2D;
 	private Animator animator;
 	public AudioSource jumpAudio;
 	public AudioSource failAudio;
@@ -21,12 +23,14 @@ public class JumpingPenguin : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		collider2D = GetComponent<Collider2D>();
+		rigidbody2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 
 		startingTime = Time.time;
 
 		highestScore = PlayerPrefs.GetFloat("highestScore", 0);
-		//highestScoreText.text = highestScore.ToString("0.0");
+		highestScoreText.text = highestScore.ToString("0.0");
 	}
 
 	// Update is called once per frame
@@ -43,26 +47,25 @@ public class JumpingPenguin : MonoBehaviour {
 		{
 			if ((Input.GetButtonUp("Jump") || Input.GetButtonUp("Fire1")) && jumpsLeft > 0)
 			{
-				if (GetComponent<Rigidbody2D>().velocity.y < 0)
+				if (rigidbody2D.velocity.y < 0)
 				{
-                    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+					rigidbody2D.velocity = Vector2.zero;
 				}
 
 				if (jumpsLeft == 1)
 				{
-                    GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce * 0.75f);
+					rigidbody2D.AddForce(transform.up * jumpForce * 0.75f);
 				}
 				else
 				{
-                    GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce);
+					rigidbody2D.AddForce(transform.up * jumpForce);
 				}
 
 				jumpsLeft--;
 
 				jumpAudio.Play();
 			}
-
-			animator.SetFloat("vVelocity", GetComponent<Rigidbody2D>().velocity.y);
+				
 			scoreText.text = (Time.time - startingTime).ToString("0.0");
 		}
 		else
@@ -100,9 +103,9 @@ public class JumpingPenguin : MonoBehaviour {
 
 			failTime = Time.time;
 			animator.SetBool("fail", true);
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            GetComponent<Rigidbody2D>().AddForce(transform.up * jumpForce);
-            GetComponent<Collider2D>().enabled = false;
+			rigidbody2D.velocity = Vector2.zero;
+			rigidbody2D.AddForce(transform.up * jumpForce);
+			collider2D.enabled = false;
 
 			failAudio.Play();
 		}
